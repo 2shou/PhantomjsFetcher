@@ -4,6 +4,8 @@ import json
 import time
 
 import tornado.httpclient
+from tornado.curl_httpclient import CurlAsyncHTTPClient
+import tornado.ioloop
 
 
 def text(obj, encoding='utf-8'):
@@ -27,10 +29,14 @@ class Fetcher(object):
         'timeout': 120,
     }
 
-    def __init__(self, phantomjs_proxy='http://localhost:25555', user_agent='', poolsize=100):
+    def __init__(self, phantomjs_proxy='http://localhost:25555', user_agent='', pool_size=100, async=False):
         self.phantomjs_proxy = phantomjs_proxy
         self.user_agent = user_agent
-        self.http_client = tornado.httpclient.HTTPClient(max_clients=poolsize)
+        self.async = async
+        if self.async:
+            self.http_client = CurlAsyncHTTPClient(max_clients=pool_size, io_loop=tornado.ioloop.IOLoop())
+        else:
+            self.http_client = tornado.httpclient.HTTPClient(max_clients=pool_size)
 
     @staticmethod
     def parse_option(default_options, url, user_agent, **kwargs):
@@ -88,7 +94,10 @@ class Fetcher(object):
             request = tornado.httpclient.HTTPRequest(
                 url='%s' % self.phantomjs_proxy, method='POST',
                 body=json.dumps(fetch), **request_conf)
-            return handle_response(self.http_client.fetch(request))
+            if self.async:
+                self.http_client.fetch(request, handle_response)
+            else:
+                return handle_response(self.http_client.fetch(request))
         except tornado.httpclient.HTTPError as e:
             if e.response:
                 return handle_response(e.response)
