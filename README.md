@@ -5,11 +5,11 @@ Before using
 ------------
 1. install [phantomjs](http://phantomjs.org/download.html) and start it:
 
-  $ phantomjs phantomjs_fetcher.js [port]
+  `$ phantomjs phantomjs_fetcher.js [port]`
 
-2. install tornado
+2. install tornado:
 
-  $ pip install tornado
+  `$ pip install tornado`
 
 Sample Code
 -----------
