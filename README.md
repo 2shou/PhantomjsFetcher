@@ -4,8 +4,11 @@ A python web fetcher using phantomjs to mock browser
 Before using
 ------------
 1. install [phantomjs](http://phantomjs.org/download.html) and start it:
+
   $ phantomjs phantomjs_fetcher.js [port]
+
 2. install tornado
+
   $ pip install tornado
 
 Sample Code
