@@ -27,10 +27,10 @@ class Fetcher(object):
         'timeout': 120,
     }
 
-    def __init__(self, phantomjs_proxy='http://localhost:25555', user_agent=''):
+    def __init__(self, phantomjs_proxy='http://localhost:25555', user_agent='', poolsize=100):
         self.phantomjs_proxy = phantomjs_proxy
         self.user_agent = user_agent
-        self.http_client = tornado.httpclient.HTTPClient(max_clients=100)
+        self.http_client = tornado.httpclient.HTTPClient(max_clients=poolsize)
 
     @staticmethod
     def parse_option(default_options, url, user_agent, **kwargs):
@@ -100,4 +100,4 @@ class Fetcher(object):
 
 if __name__ == '__main__':
     fetcher = Fetcher()
-    res = fetcher.phantomjs_fetch('https://chrome.google.com/webstore/category/extensions?hl=zh-CN')
+    res = fetcher.phantomjs_fetch('http://www.baidu.com')
