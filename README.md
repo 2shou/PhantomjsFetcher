@@ -18,7 +18,12 @@ Sample Code
 from tornado_fetcher import Fetcher
 
 # create a fetcher
->>> fetcher=Fetcher(user_agent='phantomjs', phantomjs_proxy='http://localhost:12306', poolsize=10)
+>>> fetcher=Fetcher(
+  user_agent='phantomjs', # user agent
+  phantomjs_proxy='http://localhost:12306', # phantomjs url
+  pool_size=10, # max httpclient num
+  async=False
+  )
 # fetch html after rendering javascript from url
 >>> fetcher.fetch(url)
 # or execute additional javascript after rendering end
