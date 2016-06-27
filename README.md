@@ -25,9 +25,9 @@ from tornado_fetcher import Fetcher
   async=False
   )
 # fetch html after rendering javascript from url
->>> fetcher.fetch(url)
+>>> fetcher.phantomjs_fetch(url)
 # or execute additional javascript after rendering end, which must be a function
->>> fetcher.fetch(url, js_script='setTimeout("function(){window.scrollTo(0,100000)}", 1000)')
+>>> fetcher.phantomjs_fetch(url, js_script='setTimeout("function(){window.scrollTo(0,100000)}", 1000)')
 ```
 
 Reference
