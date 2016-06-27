@@ -7,9 +7,11 @@ Before using
 
   `$ phantomjs phantomjs_fetcher.js [port]`
 
-2. install tornado:
+2. install tornado and pycurl:
 
   `$ pip install tornado`
+
+  `$ pip install pycurl`
 
 Sample Code
 -----------
