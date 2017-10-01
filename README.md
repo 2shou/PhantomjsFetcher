@@ -1,5 +1,5 @@
 # PhantomjsFetcher
-A python web fetcher using phantomjs to mock browser
+A python web fetcher using phantomjs and tornado to mock browser.
 
 Before using
 ------------
@@ -7,7 +7,7 @@ Before using
 
   `$ phantomjs phantomjs_fetcher.js [port]`
 
-2. install tornado:
+2. install [tornado](http://www.tornadoweb.org/en/stable/) with pip:
 
   `$ pip install tornado`
 
